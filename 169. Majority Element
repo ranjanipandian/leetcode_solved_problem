@@ -15,3 +15,24 @@ Example 2:
 Input: nums = [2,2,1,1,1,2,2]
 Output: 2
  
+int majorityElement(int* nums, int numsSize)
+{
+    int temp=nums[0],c=1;;
+    for(int i=1;i<numsSize;i++)
+    {
+        if(c==0)
+        {
+            c++;
+            temp=nums[i];
+        }
+        else if(temp==nums[i])
+        {
+           c++;
+        }
+        else
+        {
+           c--;
+        }
+    }
+return temp;
+}
