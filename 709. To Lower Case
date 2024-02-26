@@ -1,0 +1,43 @@
+709. To Lower Case
+Easy
+Topics
+Companies
+Hint
+Given a string s, return the string after replacing every uppercase letter with the same lowercase letter.
+
+ 
+
+Example 1:
+
+Input: s = "Hello"
+Output: "hello"
+Example 2:
+
+Input: s = "here"
+Output: "here"
+Example 3:
+
+Input: s = "LOVELY"
+Output: "lovely"
+
+
+"solution in c"
+
+char* toLowerCase(char* s){
+    int l = strlen(s);
+    char* c = (char*)malloc((l + 1) * sizeof(char)); 
+    if (c == NULL) {
+        printf("Memory allocation failed");
+        exit(1);
+    }
+    for (int i = 0; i < l; i++) {
+        if (s[i] >= 'A' && s[i] <= 'Z') { 
+            c[i] = s[i] + ('a' - 'A');
+        } else {
+            c[i] = s[i]; 
+        }
+    }
+    c[l] = '\0'; 
+    return c;
+}
+
