@@ -26,6 +26,7 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
     }
     int i, j, k;
     i = j = k = 0;
+//sort the 2 arrays
     while (i < nums1Size && j < nums2Size) {
         if (nums1[i] <= nums2[j]) {
             result[k++] = nums1[i++];
@@ -33,12 +34,14 @@ double findMedianSortedArrays(int* nums1, int nums1Size, int* nums2, int nums2Si
             result[k++] = nums2[j++];
         }
     }
+// merge the 2 arrays
     while (i < nums1Size) {
         result[k++] = nums1[i++];
     }
     while (j < nums2Size) {
         result[k++] = nums2[j++];
     }
+// find the medians
     double median;
     if (nums3Size % 2 == 0) {
         median = (result[nums3Size / 2 - 1] + result[nums3Size / 2]) / 2.0;
