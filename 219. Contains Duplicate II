@@ -1,0 +1,62 @@
+219. Contains Duplicate II
+
+
+
+'''
+I have created a hash table whichis used to map the keys to the values that is used to store the elements along with their indices.
+Then iterate through the array by using the given condition abs(i - j) <= k to find the hash value.
+Then check whether the number already exists in the hash table.
+then again check whether the differences between the indices is less then or equal to k.
+at the end of the loop increment the index of the current number in the hash table.
+
+'''
+
+Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+
+
+Example 1:
+
+Input: nums = [1,2,3,1], k = 3
+Output: true
+Example 2:
+
+Input: nums = [1,0,1,1], k = 1
+Output: true
+Example 3:
+
+Input: nums = [1,2,3,1,2,3], k = 2
+Output: false
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+-109 <= nums[i] <= 109
+0 <= k <= 105
+
+
+"solution in c"
+
+bool containsNearbyDuplicate(int* nums, int numsSize, int k)
+ {
+    int* hashtable = (int*)calloc(numsSize, sizeof(int));
+    if (hashtable == NULL) 
+    {
+        return false; 
+    }
+    for (int i = 0; i < numsSize; i++)
+    {
+        int h = abs(nums[i]) % numsSize;
+        if (hashtable[h] != 0 && nums[hashtable[h] - 1] == nums[i]) 
+        {
+            if (i - (hashtable[h] - 1) <= k) 
+            {
+                free(hashtable);
+                return true;
+            }
+        }
+        hashtable[h] = i + 1;
+    }
+    free(hashtable);
+    return false;
+}
